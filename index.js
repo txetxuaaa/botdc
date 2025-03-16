@@ -38,10 +38,10 @@ client.on('messageCreate', async (message) => {
     if (!targetLanguages[detectedLang]) return;
     
     try {
-        // Traducir el mensaje
+        // Traducir el mensaje con el modelo neuronal NMT para mayor naturalidad
         const [translation] = await translate.translate(
             message.content,
-            targetLanguages[detectedLang]
+            { to: targetLanguages[detectedLang], model: 'nmt' }
         );
 
         // Determinar la bandera según el idioma de destino
